@@ -69,8 +69,12 @@ let classifierManhattan image : DistinguishedResult =
         Matches = image.Label = actual
     }
 
-let execute =
+let calculateAccuracy length mistakes : float =
+    ((float)mistakes / (float)length) * 100.0
+
+let execute : float =
     loadImagesToRecognize
-    |> Array.map classifierEucledian
-    |> Array.filter (fun result -> not result.Matches)
+    |> Array.map classifierManhattan
+    |> Array.filter (fun result -> result.Matches)
     |> Array.length
+    |> fun (length) -> calculateAccuracy loadImagesToRecognize.Length length

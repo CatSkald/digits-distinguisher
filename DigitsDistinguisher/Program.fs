@@ -7,7 +7,7 @@ let main _ =
     let stopWatch = System.Diagnostics.Stopwatch.StartNew()
 
     Calculation.execute 
-    |> printfn "%i were wrong"
+    |> printfn "Accuracy: %f%%"
 
     stopWatch.Stop()
     printfn "Completed in %f." stopWatch.Elapsed.TotalMinutes
